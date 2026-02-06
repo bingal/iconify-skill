@@ -1,167 +1,65 @@
 # Iconify SVG Skill
 
-Search and retrieve production-ready SVG icons from Iconify collections. Includes **32,000+ icons** bundled for offline search capability.
+Search and retrieve production-ready SVG icons from Iconify collections. **32,000+ icons** bundled for offline search.
 
-## For AI Agents (OpenClaw/Claude)
+## For AI Agents
 
-This skill is designed for AI agents to quickly find and use icons:
-
-```bash
-# Agent can call the CLI directly from skill directory
-cd $SKILL_DIR && python3 scripts/iconify_cli.py search "user" --limit 5
-python3 $SKILL_DIR/scripts/iconify_cli.py get mdi:home --size 24
-```
+This is an OpenClaw/Claude agent skill. Agents should read `SKILL.md` for usage instructions.
 
 ## Installation
 
-### Option 1: Clone to OpenClaw skills directory
-
 ```bash
-# Clone to OpenClaw skills directory
-cd ~/.openclaw/skills/  # or your OpenClaw skills path
+# Clone to your OpenClaw skills directory
+cd ~/.openclaw/skills/
 git clone https://github.com/bingal/iconify-skill.git
 
-# Skill is now available - agent reads SKILL.md for usage
+# Or copy the entire directory
+cp -r /path/to/iconify-skill ~/.openclaw/skills/
 ```
 
-### Option 2: Direct CLI usage
-
-```bash
-# Run CLI directly from skill directory
-cd /path/to/iconify-skill
-python3 scripts/iconify_cli.py list-collections
-python3 scripts/iconify_cli.py search "arrow right" --limit 10
-python3 scripts/iconify_cli.py get mdi:arrow-right --size 24 --color "#3B82F6"
-```
-
-### Option 3: Install as pip package (optional)
+## CLI Usage
 
 ```bash
 cd iconify-skill
-pip install -e .
 
-# Now available as 'iconify' command
-iconify search "home"
-iconify get mdi:home --size 24
+# Search icons (offline)
+python3 scripts/iconify_cli.py search "settings" --limit 5
+
+# Get SVG
+python3 scripts/iconify_cli.py get mdi:check --size 24 --color "#10B981"
+
+# System check
+python3 scripts/iconify_cli.py doctor
 ```
 
-## Features
+## Update Bundled Data
 
-- ✓ **32,206 icons** from 9 popular collections (bundled)
-- ✓ **Offline search** - find icons without internet
-- ✓ Production-ready SVG output with customizable size/color
-- ✓ Automatic license and attribution tracking
-- ✓ SQLite FTS5 full-text search (instant results)
-- ✓ Fast local caching for network requests
+```bash
+# Update with all collections
+python3 scripts/update_bundled_data.py
+
+# Update with specific collections
+python3 scripts/update_bundled_data.py --collections mdi,bi,lucide
+```
 
 ## Bundled Collections
 
 | Collection | Icons | License |
 |------------|-------|---------|
-| mdi (Material Design) | 7,638 | MIT/Apache 2.0 |
-| ph (Phosphor) | 9,161 | MIT |
+| mdi | 7,638 | MIT/Apache 2.0 |
+| ph | 9,161 | MIT |
 | tabler | 6,034 | MIT |
 | simple-icons | 3,663 | CC0 1.0 |
 | lucide | 1,710 | ISC/MIT |
-| bi (Bootstrap) | 2,084 | MIT |
+| bi | 2,084 | MIT |
 | heroicons | 1,288 | MIT |
 | feather | 286 | MIT |
 | radix-icons | 342 | MIT |
 
 **Total: 32,206 icons**
 
-## Project Structure
-
-```
-iconify-skill/
-├── SKILL.md              # Agent skill definition
-├── data/                 # Bundled icon data (offline support)
-│   ├── icons.db          # SQLite FTS5 search index
-│   ├── collections.json  # Collection metadata
-│   └── icons.zip         # Archive for distribution
-├── scripts/
-│   ├── iconify_cli.py    # Main CLI (16KB)
-│   ├── build_index.py    # Build search index
-│   ├── doctor.py         # Health checks
-│   └── update_bundled_data.py  # Update bundled data
-├── references/
-│   ├── REFERENCE.md      # Technical docs
-│   └── LICENSES_AND_ATTRIBUTION.md
-├── assets/
-│   ├── curated_sets.txt  # Preferred icon sets
-│   └── intent_keywords.json
-└── tests/
-    └── test_iconify.py
-```
-
-## Commands
-
-| Command | Description | Offline |
-|---------|-------------|---------|
-| `list-collections` | List all icon collections | ✓ |
-| `search <query>` | Search icons by keyword | ✓ |
-| `get <prefix:name>` | Get SVG code | ✗ |
-| `suggest "<intent>"` | Suggest icons for intent | ✓ |
-| `attribution` | Show license info | ✓ |
-| `doctor` | System health check | ✓ |
-| `build-index` | Build/update search index | ✗ |
-
-## Examples
-
-### Search for user icons
-```bash
-iconify search "user profile" --limit 5
-# mdi:account, lucide:user, heroicons:user, ...
-```
-
-### Get a colored icon
-```bash
-iconify get bi:github --size 32 --color "#333333"
-```
-
-### Filter by specific collection
-```bash
-iconify search "home" --prefixes lucide,heroicons
-```
-
-### Attribution info
-```bash
-iconify attribution --prefixes mdi,bi,lucide
-```
-
-## Updating Bundled Data
-
-To update the bundled icon data:
-
-```bash
-# Update with all collections
-python scripts/update_bundled_data.py
-
-# Update with specific collections
-python scripts/update_bundled_data.py --collections mdi,bi,lucide
-
-# Verify the bundle
-python scripts/update_bundled_data.py --verify
-```
-
-## Development
-
-```bash
-# Run tests
-pytest tests/
-
-# Build search index (cache)
-python scripts/build_index.py build
-
-# Build bundled data (offline)
-python scripts/build_index.py build --bundle --prefixes mdi,bi,lucide
-
-# Check system health
-python scripts/doctor.py
-```
-
 ## License
 
 MIT License - see LICENSE file.
 
-Icon collections have their own licenses. See `references/LICENSES_AND_ATTRIBUTION.md` for details.
+Icon collections have their own licenses. See `references/LICENSES_AND_ATTRIBUTION.md`.
