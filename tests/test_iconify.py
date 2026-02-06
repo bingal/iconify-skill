@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Tests for iconify-svg CLI.
+Tests for iconify-skill CLI.
 """
 
 import pytest

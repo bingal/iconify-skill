@@ -1,15 +1,20 @@
-# Iconify SVG Reference
+# Iconify Skill Reference
 
 ## Architecture
 
 ### Components
 
 ```
-iconify-svg/
+iconify-skill/
 ├── scripts/
 │   ├── iconify_cli.py      # Main CLI entry point
 │   ├── build_index.py      # Build SQLite FTS index
-│   └── doctor.py           # System health checks
+│   ├── doctor.py           # System health checks
+│   └── update_bundled_data.py  # Update offline data
+├── data/
+│   ├── icons.db            # Bundled search index
+│   ├── collections.json    # Collection metadata
+│   └── icons.zip           # Archive for distribution
 ├── references/
 │   ├── REFERENCE.md        # This file
 │   └── LICENSES_AND_ATTRIBUTION.md
@@ -38,7 +43,7 @@ The CLI uses the Iconify API at `https://api.iconify.design`:
 ## Caching Strategy
 
 ### Cache Location
-- Default: `~/.cache/iconify-svg/`
+- Default: `~/.cache/iconify-skill/`
 - Override: Set `ICONIFY_CACHE_DIR` environment variable
 
 ### Cached Files
@@ -98,8 +103,8 @@ The CLI rejects icons containing:
 
 ### Building the Index
 ```bash
-iconify build-index  # Creates ~/.cache/iconify-svg/icons.db
-iconify build-index --force  # Rebuild existing index
+python3 scripts/iconify_cli.py build-index  # Creates ~/.cache/iconify-skill/icons.db
+python3 scripts/iconify_cli.py build-index --force  # Rebuild existing index
 ```
 
 ### Index Schema
@@ -188,7 +193,7 @@ cursor.execute(
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `ICONIFY_CACHE_DIR` | `~/.cache/iconify-svg/` | Cache directory |
+| `ICONIFY_CACHE_DIR` | `~/.cache/iconify-skill/` | Cache directory |
 | `ICONIFY_API_URL` | `https://api.iconify.design` | API endpoint |
 
 ## Integration Examples

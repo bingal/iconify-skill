@@ -25,7 +25,7 @@ from functools import lru_cache
 from datetime import datetime
 import sqlite3
 
-CACHE_DIR = Path(os.environ.get("ICONIFY_CACHE_DIR", Path.home() / ".cache" / "iconify-svg"))
+CACHE_DIR = Path(os.environ.get("ICONIFY_CACHE_DIR", Path.home() / ".cache" / "iconify-skill"))
 # Iconify raw JSON from GitHub (most reliable)
 ICONIFY_API = "https://api.iconify.design"
 GITHUB_RAW = "https://raw.githubusercontent.com/iconify/icon-sets/master/json"
@@ -72,7 +72,7 @@ def http_get(url: str, timeout: float = 30.0) -> dict:
 
     # Fetch from network
     try:
-        req = Request(url, headers={"Accept": "application/json", "User-Agent": f"iconify-svg/{__version__}"})
+        req = Request(url, headers={"Accept": "application/json", "User-Agent": f"iconify-skill/{__version__}"})
         with urlopen(req, timeout=timeout) as resp:
             data = json.loads(resp.read().decode())
             # Cache it
@@ -504,7 +504,7 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=__doc__
     )
-    parser.add_argument("--version", action="version", version=f"iconify-svg {__version__}")
+    parser.add_argument("--version", action="version", version=f"iconify-skill {__version__}")
 
     subparsers = parser.add_subparsers(dest="command", required=True)
 

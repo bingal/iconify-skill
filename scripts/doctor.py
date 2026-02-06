@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-System health check for iconify-svg.
+System health check for iconify-skill.
 
 Usage:
     python doctor.py
@@ -244,7 +244,7 @@ class Doctor:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Check iconify-svg system health",
+        description="Check iconify-skill system health",
         formatter_class=argparse.RawDescriptionHelpFormatter
     )
     parser.add_argument("--version", action="version", version=f"iconify-doctor {__version__}")

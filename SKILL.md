@@ -1,5 +1,5 @@
 ---
-name: iconify-svg
+name: iconify-skill
 description: Find and generate SVG icons from Iconify collections. Search 32K+ icons offline, get production-ready SVG code with size/color customization.
 category: developer-tools
 keywords:
