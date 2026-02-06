@@ -27,7 +27,8 @@ from urllib.error import URLError, HTTPError
 
 # Constants
 SCRIPT_DIR = Path(__file__).parent.resolve()
-DATA_DIR = SCRIPT_DIR / "data"
+SKILL_DIR = SCRIPT_DIR.parent
+DATA_DIR = SKILL_DIR / "data"
 BUNDLE_ZIP = DATA_DIR / "icons.zip"
 INDEX_DB = DATA_DIR / "icons.db"
 METADATA_FILE = DATA_DIR / "collections.json"
