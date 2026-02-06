@@ -16,6 +16,7 @@ metadata:
       {
         "emoji": "🎨",
         "requires": { "bins": ["python3"] },
+        "offline_capable": true,
         "install":
           [
             {
@@ -33,48 +34,69 @@ metadata:
 
 Search and retrieve production-ready SVG icons from Iconify collections.
 
-## Usage
+## For AI Agents
 
-Run commands from the skill directory:
+### Discovery
+1. Read `SKILL.md` in skill directory
+2. Check prerequisites: `python3` required
 
+### Verification
 ```bash
-cd $SKILL_DIR
-python3 scripts/iconify_cli.py <command> [options]
+python3 $SKILL_DIR/scripts/iconify_cli.py doctor
 ```
 
-## Commands
+### Command Interface
+```bash
+python3 $SKILL_DIR/scripts/iconify_cli.py <command> [arguments]
+```
 
-| Command | Description |
-|---------|-------------|
-| `list-collections` | List available icon sets |
-| `search <query>` | Search icons by keyword |
-| `get <prefix:name>` | Get SVG for specific icon |
-| `suggest "<intent>"` | Suggest icons for intent |
-| `attribution` | Show license/attribution info |
-| `doctor` | Check system health |
+### Available Commands
+- `list-collections` - List icon sets
+- `search <query>` - Search icons (offline)
+- `get <prefix:name>` - Get SVG (requires network)
+- `suggest "<intent>"` - Suggest icons for intent
+- `attribution` - Show license info
+- `doctor` - System health check
 
-## Examples
+## Usage Examples
 
 ```bash
-# Search for icons (works offline)
-python3 scripts/iconify_cli.py search "close button" --limit 5
+# Search icons (offline)
+python3 $SKILL_DIR/scripts/iconify_cli.py search "close button" --limit 5
 
-# Get SVG with custom size/color
-python3 scripts/iconify_cli.py get mdi:home --size 24 --color "#3B82F6"
+# Get SVG with custom styling
+python3 $SKILL_DIR/scripts/iconify_cli.py get mdi:home --size 24 --color "#3B82F6"
 
-# Find icons for a feature
-python3 scripts/iconify_cli.py suggest "user profile page"
+# Suggest icons for a feature
+python3 $SKILL_DIR/scripts/iconify_cli.py suggest "user profile page"
 
-# Filter by specific collection
-python3 scripts/iconify_cli.py search "home" --prefixes lucide,heroicons
+# Filter by collection
+python3 $SKILL_DIR/scripts/iconify_cli.py search "home" --prefixes lucide,heroicons
 ```
 
 ## Bundled Collections (32K icons)
 
 mdi, ph, tabler, simple-icons, lucide, bi, heroicons, feather, radix-icons
 
-## Notes
+## Output Format
 
-- **Search**: Works offline (uses bundled FTS5 index)
-- **Get**: Requires internet (fetches from Iconify API)
-- Output includes license attribution comments
+### Exit Codes
+- `0` - Success
+- `1` - No icons found / invalid arguments
+- `2` - Network error (get command)
+- `3` - Database error (offline mode)
+
+### SVG Output
+```xml
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+  <path fill="#3B82F6" d="..."/>
+</svg>
+<!-- Icon: mdi:check -->
+<!-- License: MIT -->
+```
+
+## Offline Capability
+
+- **Search**: Works offline (bundled SQLite FTS5 index)
+- **Get**: Requires internet (fetches SVG from Iconify API)
+- Use `doctor` command to verify offline data availability

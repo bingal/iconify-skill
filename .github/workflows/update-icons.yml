@@ -1,0 +1,53 @@
+name: Update Icon Data
+
+on:
+  schedule:
+    # Run weekly on Sunday at 00:00 UTC
+    - cron: "0 0 * * 0"
+  workflow_dispatch:
+    # Allow manual trigger
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+
+      - name: Update bundled icon data
+        run: |
+          python scripts/update_bundled_data.py
+
+      - name: Check for changes
+        id: changed
+        run: |
+          git status --porcelain
+          echo "changed=$(git status --porcelain | wc -l)" >> $GITHUB_OUTPUT
+
+      - name: Create Pull Request
+        if: steps.changed.outputs.changed != '0'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          title: "chore: Update bundled icon data"
+          body: |
+            Automated update of bundled icon data.
+            
+            - Updated icons database
+            - Updated collection metadata
+          commit-message: "chore: Update bundled icon data"
+          branch: bot/update-icons
+          delete-branch: true
+          token: ${{ secrets.GITHUB_TOKEN }}
