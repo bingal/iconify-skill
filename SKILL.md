@@ -10,6 +10,29 @@ keywords:
   - ui
   - icons
 agent_timeout: 60
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "🎨",
+        "requires": { "bins": ["python3"] },
+        "install":
+          [
+            {
+              "id": "pip",
+              "kind": "pip",
+              "label": "Install via pip (skill/scripts/)",
+              "command": "python3 $SKILL_DIR/scripts/iconify_cli.py --help"
+            },
+            {
+              "id": "clone",
+              "kind": "clone",
+              "label": "Clone skill to skills directory",
+              "url": "https://github.com/bingal/iconify-skill.git"
+            },
+          ],
+      },
+  }
 ---
 
 # Iconify SVG Skill

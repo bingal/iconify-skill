@@ -2,34 +2,47 @@
 
 Search and retrieve production-ready SVG icons from Iconify collections. Includes **32,000+ icons** bundled for offline search capability.
 
-## Quick Start
-
-```bash
-# Install the CLI
-cd iconify-skill
-pip install -e .
-
-# List available icon collections
-iconify list-collections
-
-# Search for icons (works offline!)
-iconify search "arrow right" --limit 10
-
-# Get SVG for an icon (requires internet)
-iconify get mdi:arrow-right --size 24 --color "#3B82F6"
-```
-
-## For AI Agents
+## For AI Agents (OpenClaw/Claude)
 
 This skill is designed for AI agents to quickly find and use icons:
 
-```markdown
-# SKILL.md
-Use iconify CLI:
-- `iconify search <query>` - Find icons (offline)
-- `iconify get <prefix:name>` - Get SVG code (online)
-- `iconify suggest "<intent>"` - Get suggestions (offline)
-- `iconify doctor` - Check system health
+```bash
+# Agent can call the CLI directly from skill directory
+cd $SKILL_DIR && python3 scripts/iconify_cli.py search "user" --limit 5
+python3 $SKILL_DIR/scripts/iconify_cli.py get mdi:home --size 24
+```
+
+## Installation
+
+### Option 1: Clone to OpenClaw skills directory
+
+```bash
+# Clone to OpenClaw skills directory
+cd ~/.openclaw/skills/  # or your OpenClaw skills path
+git clone https://github.com/bingal/iconify-skill.git
+
+# Skill is now available - agent reads SKILL.md for usage
+```
+
+### Option 2: Direct CLI usage
+
+```bash
+# Run CLI directly from skill directory
+cd /path/to/iconify-skill
+python3 scripts/iconify_cli.py list-collections
+python3 scripts/iconify_cli.py search "arrow right" --limit 10
+python3 scripts/iconify_cli.py get mdi:arrow-right --size 24 --color "#3B82F6"
+```
+
+### Option 3: Install as pip package (optional)
+
+```bash
+cd iconify-skill
+pip install -e .
+
+# Now available as 'iconify' command
+iconify search "home"
+iconify get mdi:home --size 24
 ```
 
 ## Features
