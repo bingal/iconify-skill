@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "iconify-svg"
+version = "1.0.0"
+description = "Search and retrieve SVG icons from Iconify collections"
+readme = "SKILL.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+keywords = ["icon", "svg", "iconify", "cli", "agent"]
+
+[project.scripts]
+iconify = "iconify_cli:main"
+
+[project.optional-dependencies]
+dev = ["pytest", "pytest-cov"]
+
+[tool.setuptools.packages.find]
+include = ["scripts", "tests"]

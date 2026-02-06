@@ -1,0 +1,252 @@
+{
+  "mdi": {
+    "name": "Material Design Icons",
+    "total": 7447,
+    "author": {
+      "name": "Pictogrammers",
+      "url": "https://github.com/Templarian/MaterialDesign"
+    },
+    "license": {
+      "title": "Apache 2.0",
+      "spdx": "Apache-2.0",
+      "url": "https://github.com/Templarian/MaterialDesign/blob/master/LICENSE"
+    },
+    "samples": [
+      "account-check",
+      "bell-alert-outline",
+      "calendar-edit",
+      "skip-previous",
+      "home-variant",
+      "lock-open-outline"
+    ],
+    "height": 24,
+    "category": "Material",
+    "tags": [
+      "Precise Shapes",
+      "Has Padding"
+    ],
+    "palette": false
+  },
+  "tabler": {
+    "name": "Tabler Icons",
+    "total": 5986,
+    "version": "3.36.1",
+    "author": {
+      "name": "Pawe\u0142 Kuna",
+      "url": "https://github.com/tabler/tabler-icons"
+    },
+    "license": {
+      "title": "MIT",
+      "spdx": "MIT",
+      "url": "https://github.com/tabler/tabler-icons/blob/master/LICENSE"
+    },
+    "samples": [
+      "alien",
+      "device-desktop",
+      "photo",
+      "chevron-right",
+      "check",
+      "square-root"
+    ],
+    "height": 24,
+    "category": "UI 24px",
+    "tags": [
+      "Precise Shapes",
+      "Has Padding",
+      "Uses Stroke"
+    ],
+    "palette": false
+  },
+  "lucide": {
+    "name": "Lucide",
+    "total": 1669,
+    "author": {
+      "name": "Lucide Contributors",
+      "url": "https://github.com/lucide-icons/lucide"
+    },
+    "license": {
+      "title": "ISC",
+      "spdx": "ISC",
+      "url": "https://github.com/lucide-icons/lucide/blob/main/LICENSE"
+    },
+    "samples": [
+      "circle-check",
+      "award",
+      "house",
+      "check",
+      "mountain",
+      "chevron-up"
+    ],
+    "height": 24,
+    "category": "UI 24px",
+    "tags": [
+      "Precise Shapes",
+      "Has Padding",
+      "Uses Stroke"
+    ],
+    "palette": false
+  },
+  "bi": {
+    "name": "Bootstrap Icons",
+    "total": 2078,
+    "version": "1.13.1",
+    "author": {
+      "name": "The Bootstrap Authors",
+      "url": "https://github.com/twbs/icons"
+    },
+    "license": {
+      "title": "MIT",
+      "spdx": "MIT",
+      "url": "https://github.com/twbs/icons/blob/main/LICENSE.md"
+    },
+    "samples": [
+      "graph-up",
+      "card-image",
+      "code-slash",
+      "egg-fill",
+      "brilliance",
+      "toggle-on"
+    ],
+    "height": 16,
+    "category": "UI 16px / 32px",
+    "tags": [
+      "Precise Shapes"
+    ],
+    "palette": false
+  },
+  "ph": {
+    "name": "Phosphor",
+    "total": 9072,
+    "version": "2.1.1",
+    "author": {
+      "name": "Phosphor Icons",
+      "url": "https://github.com/phosphor-icons/core"
+    },
+    "license": {
+      "title": "MIT",
+      "spdx": "MIT",
+      "url": "https://github.com/phosphor-icons/core/blob/main/LICENSE"
+    },
+    "samples": [
+      "folder-open-duotone",
+      "check-square-offset-thin",
+      "pencil-line-fill",
+      "check-thin",
+      "browser-duotone",
+      "thermometer-simple-fill"
+    ],
+    "height": 24,
+    "category": "UI Other / Mixed Grid",
+    "tags": [
+      "Has Padding"
+    ],
+    "palette": false
+  },
+  "radix-icons": {
+    "name": "Radix Icons",
+    "total": 332,
+    "version": "1.3.2",
+    "author": {
+      "name": "WorkOS",
+      "url": "https://github.com/radix-ui/icons"
+    },
+    "license": {
+      "title": "MIT",
+      "spdx": "MIT",
+      "url": "https://github.com/radix-ui/icons/blob/master/LICENSE"
+    },
+    "samples": [
+      "width",
+      "checkbox",
+      "code",
+      "border-width",
+      "all-sides",
+      "half-2"
+    ],
+    "height": 15,
+    "category": "UI Other / Mixed Grid",
+    "tags": [
+      "Precise Shapes",
+      "Has Padding"
+    ],
+    "palette": false
+  },
+  "heroicons": {
+    "name": "HeroIcons",
+    "total": 1288,
+    "version": "2.2.0",
+    "author": {
+      "name": "Refactoring UI Inc",
+      "url": "https://github.com/tailwindlabs/heroicons"
+    },
+    "license": {
+      "title": "MIT",
+      "spdx": "MIT",
+      "url": "https://github.com/tailwindlabs/heroicons/blob/master/LICENSE"
+    },
+    "samples": [
+      "camera",
+      "building-library",
+      "receipt-refund",
+      "bookmark",
+      "cloud",
+      "folder"
+    ],
+    "category": "UI Other / Mixed Grid",
+    "tags": [
+      "Has Padding"
+    ],
+    "palette": false
+  },
+  "simple-icons": {
+    "name": "Simple Icons",
+    "total": 3389,
+    "version": "16.7.0",
+    "author": {
+      "name": "Simple Icons Collaborators",
+      "url": "https://github.com/simple-icons/simple-icons"
+    },
+    "license": {
+      "title": "CC0 1.0",
+      "spdx": "CC0-1.0",
+      "url": "https://github.com/simple-icons/simple-icons/blob/develop/LICENSE.md"
+    },
+    "samples": [
+      "wise",
+      "framer",
+      "vuetify",
+      "unsplash",
+      "stackblitz",
+      "mitsubishi"
+    ],
+    "height": 24,
+    "category": "Logos",
+    "palette": false
+  },
+  "feather": {
+    "name": "Feather Icons",
+    "total": 286,
+    "author": {
+      "name": "Cole Bemis",
+      "url": "https://github.com/feathericons/feather"
+    },
+    "license": {
+      "title": "MIT",
+      "spdx": "MIT",
+      "url": "https://github.com/feathericons/feather/blob/master/LICENSE"
+    },
+    "samples": [
+      "check-circle",
+      "award",
+      "home"
+    ],
+    "height": 24,
+    "tags": [
+      "Precise Shapes",
+      "Has Padding",
+      "Uses Stroke"
+    ],
+    "palette": false,
+    "hidden": true
+  }
+}

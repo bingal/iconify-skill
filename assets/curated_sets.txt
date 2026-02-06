@@ -1,0 +1,15 @@
+# Curated Icon Sets
+# Use these for consistent style across projects
+
+# MIT/ISC licensed sets (safe for most projects)
+mdi
+bi
+lucide
+heroicons
+tabler
+feather
+ph
+radix-icons
+
+# Premium-style sets (verify licenses)
+simple-icons
