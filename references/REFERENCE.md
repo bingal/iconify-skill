@@ -1,5 +1,40 @@
 # Iconify Skill Reference
 
+## Table of Contents
+
+- [Architecture](#architecture)
+  - [Components](#components)
+  - [Data Flow](#data-flow)
+- [Iconify API](#iconify-api)
+- [Caching Strategy](#caching-strategy)
+  - [Cache Location](#cache-location)
+  - [Cached Files](#cached-files)
+  - [Cache Invalidation](#cache-invalidation)
+- [Icon Resolution](#icon-resolution)
+  - [Prefix:Name Format](#prefixname-format)
+  - [Aliases](#aliases)
+- [SVG Assembly](#svg-assembly)
+  - [Basic Assembly](#basic-assembly)
+  - [Color Handling](#color-handling)
+  - [Sanitization](#sanitization)
+- [Search Index](#search-index)
+  - [Building the Index](#building-the-index)
+  - [Index Schema](#index-schema)
+  - [Querying](#querying)
+- [Collections](#collections)
+  - [Popular Collections](#popular-collections)
+  - [Collection Info Structure](#collection-info-structure)
+- [Error Handling](#error-handling)
+  - [Common Errors](#common-errors)
+  - [Exit Codes](#exit-codes)
+- [Performance](#performance)
+  - [Typical Response Times](#typical-response-times)
+  - [Memory Usage](#memory-usage)
+- [Environment Variables](#environment-variables)
+- [Integration Examples](#integration-examples)
+  - [In Python Code](#in-python-code)
+  - [In Shell Scripts](#in-shell-scripts)
+
 ## Architecture
 
 ### Components

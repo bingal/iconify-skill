@@ -1,56 +1,34 @@
 ---
 name: iconify-skill
-description: Find and generate SVG icons from Iconify collections. Search 32K+ icons offline, get production-ready SVG code with size/color customization.
-category: developer-tools
-keywords:
-  - icon
-  - svg
-  - iconify
-  - graphics
-  - ui
-  - icons
-agent_timeout: 60
-metadata:
-  {
-    "openclaw":
-      {
-        "emoji": "🎨",
-        "requires": { "bins": ["python3"] },
-        "offline_capable": true,
-        "install":
-          [
-            {
-              "id": "clone",
-              "kind": "clone",
-              "label": "Clone to skills directory",
-              "url": "https://github.com/bingal/iconify-skill.git"
-            },
-          ],
-      },
-  }
+description: Search Iconify collections and generate SVG icons with size/color customization; use for requests about finding icon IDs, suggesting icons by intent, retrieving SVG markup, or working offline with a bundled icon index.
 ---
 
-# Iconify SVG
+# Iconify SVG Skill
 
-Search and retrieve production-ready SVG icons from Iconify collections.
+Use the CLI in `scripts/iconify_cli.py` to search, suggest, and fetch SVG icons.
 
-## For AI Agents
+## Quickstart
 
-### Discovery
-1. Read `SKILL.md` in skill directory
-2. Check prerequisites: `python3` required
+1. Ensure Python 3 is available.
+2. Run `doctor` to validate the environment.
+3. If the offline index is missing, build it.
 
-### Verification
 ```bash
 python3 $SKILL_DIR/scripts/iconify_cli.py doctor
 ```
 
-### Command Interface
+```bash
+python3 $SKILL_DIR/scripts/iconify_cli.py build-index
+```
+
+## Command Interface
+
 ```bash
 python3 $SKILL_DIR/scripts/iconify_cli.py <command> [arguments]
 ```
 
-### Available Commands
+## Common Commands
+
 - `list-collections` - List icon sets
 - `search <query>` - Search icons (offline)
 - `get <prefix:name>` - Get SVG (requires network)
@@ -74,6 +52,13 @@ python3 $SKILL_DIR/scripts/iconify_cli.py suggest "user profile page"
 python3 $SKILL_DIR/scripts/iconify_cli.py search "home" --prefixes lucide,heroicons
 ```
 
+## Offline + Data Notes
+
+- `search` works offline using the bundled SQLite index in `data/`.
+- `get` needs network access (Iconify API).
+- Use `doctor` to confirm cache/index availability.
+- Use `build-index` to regenerate the search index if needed.
+
 ## Bundled Collections (32K icons)
 
 mdi, ph, tabler, simple-icons, lucide, bi, heroicons, feather, radix-icons
@@ -95,8 +80,7 @@ mdi, ph, tabler, simple-icons, lucide, bi, heroicons, feather, radix-icons
 <!-- License: MIT -->
 ```
 
-## Offline Capability
+## References
 
-- **Search**: Works offline (bundled SQLite FTS5 index)
-- **Get**: Requires internet (fetches SVG from Iconify API)
-- Use `doctor` command to verify offline data availability
+- Read `references/REFERENCE.md` for architecture details, CLI behavior, cache paths, and error handling.
+- Read `references/LICENSES_AND_ATTRIBUTION.md` when you need license requirements.
