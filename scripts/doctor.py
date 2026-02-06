@@ -49,7 +49,7 @@ class Doctor:
 
     def run_all_checks(self):
         """Run all health checks."""
-        print("Iconify SVG Doctor")
+        print("Iconify Doctor")
         print("=" * 50)
 
         # Python version

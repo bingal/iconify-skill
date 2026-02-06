@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Iconify SVG CLI - Search and retrieve SVG icons from Iconify collections.
+Iconify CLI - Search and retrieve SVG icons from Iconify collections.
 
 Usage:
     iconify list-collections          # List available icon collections
@@ -450,7 +450,7 @@ def show_attribution(prefixes: list = None):
 
 def doctor():
     """Check system health."""
-    print("Iconify SVG Doctor Check")
+    print("Iconify Doctor Check")
     print("=" * 40)
 
     checks = []
@@ -500,7 +500,7 @@ def doctor():
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Iconify SVG - Search and retrieve SVG icons",
+        description="Iconify - Search and retrieve SVG icons",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=__doc__
     )

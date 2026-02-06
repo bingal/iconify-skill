@@ -3,7 +3,7 @@ name: iconify-skill
 description: Search Iconify collections and generate SVG icons with size/color customization; use for requests about finding icon IDs, suggesting icons by intent, retrieving SVG markup, or working offline with a bundled icon index.
 ---
 
-# Iconify SVG Skill
+# Iconify Skill
 
 Use the CLI in `scripts/iconify_cli.py` to search, suggest, and fetch SVG icons.
 
