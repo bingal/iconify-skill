@@ -71,7 +71,8 @@ CLI Input → Iconify API → Cache → Process → SVG Output
 
 The CLI uses the Iconify API at `https://api.iconify.design`:
 
-- `/collections.json` - List all available collections
+- `/collections` - List all available collections
+- `/search?query={q}&limit={n}` - Search icons across all collections (online fallback)
 - `/{prefix}.json` - Get all icons in a collection
 - `/{prefix}/{name}.svg` - Get single SVG (alternative)
 
@@ -222,7 +223,8 @@ cursor.execute(
 
 ### Memory Usage
 - CLI: ~10-50MB (varies with cache size)
-- Index: ~1MB per 100,000 icons
+- Bundled index: ~31MB for ~32,400 curated icons (~1MB per 1,000 icons with FTS5 overhead)
+- Full index (all 300K+ icons): ~74MB
 
 ## Environment Variables
 

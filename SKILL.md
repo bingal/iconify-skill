@@ -30,7 +30,7 @@ python3 $SKILL_DIR/scripts/iconify_cli.py <command> [arguments]
 ## Common Commands
 
 - `list-collections` - List icon sets
-- `search <query>` - Search icons (offline)
+- `search <query>` - Search icons (offline curated index + online fallback)
 - `get <prefix:name>` - Get SVG (requires network)
 - `suggest "<intent>"` - Suggest icons for intent
 - `attribution` - Show license info
@@ -54,14 +54,16 @@ python3 $SKILL_DIR/scripts/iconify_cli.py search "home" --prefixes lucide,heroic
 
 ## Offline + Data Notes
 
-- `search` works offline using the bundled SQLite index in `data/`.
-- `get` needs network access (Iconify API).
+- `search` uses the bundled SQLite index for curated sets (~32K icons) and automatically falls back to the Iconify online search API for broader coverage.
+- `get` needs network access (Iconify API / GitHub raw JSON).
 - Use `doctor` to confirm cache/index availability.
 - Use `build-index` to regenerate the search index if needed.
 
-## Bundled Collections (32K icons)
+## Bundled Collections (~32K icons)
 
 mdi, ph, tabler, simple-icons, lucide, bi, heroicons, feather, radix-icons
+
+These curated MIT/ISC-licensed sets are bundled for fast offline search. Results from outside this list are fetched via the Iconify online search API.
 
 ## Output Format
 
