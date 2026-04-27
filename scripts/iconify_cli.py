@@ -133,25 +133,50 @@ def list_collections():
         print(f"{prefix:<20} {total:<12} {license_info}")
 
 
+def search_online(query: str, limit: int = 20, prefixes: list = None):
+    """Search icons using Iconify online search API."""
+    url = f"{ICONIFY_API}/search?query={query.replace(' ', '%20')}&limit={limit}"
+    try:
+        data = http_get(url)
+        icons = data.get("icons", [])
+        if prefixes:
+            icons = [i for i in icons if i.split(":", 1)[0] in prefixes]
+        return icons[:limit]
+    except Exception as e:
+        print(f"Online search failed: {e}", file=sys.stderr)
+        return []
+
+
 def search_icons(query: str, limit: int = 20, prefixes: list = None):
     """Search for icons matching query."""
-    # Priority: bundled index > cache index > network fallback
+    # Priority: bundled index > cache index > online search > slow network fallback
     index_path = None
-    
+    local_results = []
+
     # Check bundled index first
     if has_bundled_index():
         index_path = BUNDLE_INDEX
     elif get_cache_path("icons.db").exists():
         index_path = get_cache_path("icons.db")
-    
+
     if index_path:
-        results = search_index(query, limit, prefixes, index_path)
-        for prefix, name, score in results:
-            print(f"{prefix}:{name} (score: {score})")
+        local_results = search_index(query, limit, prefixes, index_path)
+        for prefix, name, score in local_results:
+            print(f"{prefix}:{name} (score: {score:.4f})")
+
+    # If local results are insufficient, try online search
+    if len(local_results) < limit:
+        online_limit = limit - len(local_results)
+        online_results = search_online(query, online_limit, prefixes)
+        for full_id in online_results:
+            if full_id not in [f"{p}:{n}" for p, n, _ in local_results]:
+                print(f"{full_id} (online)")
+
+    if local_results or (index_path is None and search_online(query, limit, prefixes)):
         return
 
-    # Fallback: search through loaded collections (slow!)
-    print("Warning: No search index available, falling back to network search...")
+    # Final fallback: search through loaded collections (slow!)
+    print("Warning: No search index or online API available, falling back to slow network search...")
     collections = load_collections()
     results = []
     query_lower = query.lower()
@@ -272,6 +297,7 @@ def build_index(force: bool = False, bundle: bool = False, prefixes: list = None
             continue
 
     conn.commit()
+    cursor.execute("VACUUM")
     conn.close()
     print(f"Indexed {total} icons from {len(collections)} collections.")
 

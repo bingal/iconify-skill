@@ -132,6 +132,7 @@ def build_index(collections: dict, prefixes: list = None):
             continue
 
     conn.commit()
+    cursor.execute("VACUUM")
     conn.close()
     
     return total_icons
@@ -245,11 +246,21 @@ def main():
         verify_bundle()
         return 0
 
-    # Parse prefixes
+    # Parse prefixes: default to curated sets for smaller bundled data
     prefixes = None
     if args.collections:
         prefixes = [p.strip() for p in args.collections.split(",")]
         print(f"Filtering to: {', '.join(prefixes)}")
+    else:
+        curated_path = SKILL_DIR / "assets" / "curated_sets.txt"
+        if curated_path.exists():
+            prefixes = []
+            for line in curated_path.read_text().splitlines():
+                line = line.strip()
+                if line and not line.startswith("#"):
+                    prefixes.append(line)
+            if prefixes:
+                print(f"Using curated sets: {', '.join(prefixes)}")
 
     # Ensure data directory
     ensure_data_dir()

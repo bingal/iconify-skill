@@ -138,6 +138,7 @@ def build_index(prefixes: list = None, force: bool = False):
         """)
 
         conn.commit()
+        cursor.execute("VACUUM")
         conn.close()
 
         # Summary
