@@ -160,8 +160,9 @@ class TestIndexBuild:
     def test_build_index_help(self):
         """Test build-index help."""
         import subprocess
+        script_path = Path(__file__).parent.parent / "scripts" / "build_index.py"
         result = subprocess.run(
-            [sys.executable, "build_index.py", "--help"],
+            [sys.executable, str(script_path), "--help"],
             capture_output=True,
             text=True
         )
@@ -174,8 +175,9 @@ class TestDoctor:
     def test_doctor_help(self):
         """Test doctor help."""
         import subprocess
+        script_path = Path(__file__).parent.parent / "scripts" / "doctor.py"
         result = subprocess.run(
-            [sys.executable, "doctor.py", "--help"],
+            [sys.executable, str(script_path), "--help"],
             capture_output=True,
             text=True
         )

@@ -24,28 +24,29 @@ from iconify_cli import (
 __version__ = "1.0.0"
 
 
+def check(name: str):
+    """Decorator to run a check and track result."""
+    def decorator(func):
+        def wrapper(self, *args, **kwargs):
+            try:
+                result = func(self, *args, **kwargs)
+                status = "PASS" if result else "FAIL"
+                self.checks.append((name, status))
+                return result
+            except Exception as e:
+                self.checks.append((name, f"ERROR: {e}"))
+                self.errors.append((name, str(e)))
+                return False
+        return wrapper
+    return decorator
+
+
 class Doctor:
     def __init__(self, verbose: bool = False):
         self.verbose = verbose
         self.checks = []
         self.warnings = []
         self.errors = []
-
-    def check(self, name: str) -> bool:
-        """Decorator to run a check and track result."""
-        def decorator(func):
-            def wrapper(*args, **kwargs):
-                try:
-                    result = func(*args, **kwargs)
-                    status = "PASS" if result else "FAIL"
-                    self.checks.append((name, status))
-                    return result
-                except Exception as e:
-                    self.checks.append((name, f"ERROR: {e}"))
-                    self.errors.append((name, str(e)))
-                    return False
-            return wrapper
-        return decorator
 
     def run_all_checks(self):
         """Run all health checks."""
@@ -117,7 +118,7 @@ class Doctor:
     def _check_collections_api(self):
         """Check Iconify API is accessible."""
         try:
-            collections = http_get(f"{ICONIFY_API}/collections.json")
+            collections = http_get(f"{ICONIFY_API}/collections")
             return len(collections) > 0
         except Exception as e:
             self.errors.append(("Iconify API", str(e)))
